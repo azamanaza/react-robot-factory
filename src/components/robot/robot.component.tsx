@@ -5,13 +5,13 @@ export interface RobotComponentProp { robot: Robot }
 
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
-export class RbRobotComponent extends React.Component<RobotComponentProp, {}> {
+export default class RbRobotComponent extends React.Component<RobotComponentProp, {}> {
 
     getRobotJson(): string {
-        return JSON.stringify(this.props.robot, null, 2);
+        return JSON.stringify(this.props.robot);
     }
-    
+
     render() {
-        return <div>{this.getRobotJson()}</div>;
+        return <pre>{this.getRobotJson()}</pre>;
     }
 }
