@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import Robot, { robotStatuses, RobotConfig } from "../robot";
 
-export default function createRandomRobot() {
+export default function createRandomRobot(): Robot {
     let randomId = _.random(1, 10000);
     let robotConfig = {
         hasSentience: _.random(0, 1) ? true : false,
@@ -18,4 +18,8 @@ export default function createRandomRobot() {
         configuration: robotConfig,
         statuses: statuses
     })
+}
+
+export function createTestRobots(): Robot[] {
+    return _.map(new Array(10), () => createRandomRobot());
 }
