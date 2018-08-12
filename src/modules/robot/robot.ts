@@ -19,9 +19,15 @@ export class RobotConfig {
     color: string
 }
 
-export const RobotStatuses = {
+export const robotStatuses = {
     ON_FIRE: "on fire",
     RUSTY: "rusty",
     LOOSE_SCREWS: "lose screws",
     PAINT_SCRATCHED: "paint scratched"
 };
+
+export const robotFilters = {
+    SHOW_ALL: "all",
+    FACTORY_SECOND: "factory-second",
+    QA_PASSED: "qa-passed"
+}
