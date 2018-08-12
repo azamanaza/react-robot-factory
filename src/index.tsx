@@ -1,9 +1,16 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import robotReducer from "./root.reducer";
 
-import { App } from "./components/app.component";
+import { App } from "./modules/app.component";
+
+const store = createStore(robotReducer)
 
 ReactDOM.render(
-    <App compiler="TypeScript" framework="React" />,
+    <Provider store={store}>
+        <App compiler="TypeScript" framework="React" />
+    </Provider>,
     document.getElementById("root")
 );

@@ -1,5 +1,11 @@
 export default class Robot {
-    id: number
+    constructor(params: any) {
+        this.robotId = params.robotId;
+        this.name = params.name;
+        this.configuration = params.configuration;
+        this.statuses = params.statuses;
+    }
+    robotId: number
     name: string 
     configuration: RobotConfig
     statuses: string[]

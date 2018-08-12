@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as _ from "lodash";
-import Robot from "./robot";
+import Robot from "../robot";
 import RbRobotComponent from "./robot.component";
 
 export interface RobotListComponentProp { robots: Robot[] }

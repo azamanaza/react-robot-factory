@@ -1,5 +1,5 @@
 import * as React from "react";
-import Robot from "./robot";
+import Robot from "./../robot";
 
 export interface RobotComponentProp { robot: Robot }
 

@@ -1,6 +1,6 @@
 import * as React from "react";
+import RbRobotComponent from "./robot/components/robot.component";
 import Robot from "./robot/robot";
-import { RbRobotListComponent } from "./robot/robot-list.component";
 
 export interface AppComponentProp { compiler: string; framework: string; }
 
@@ -9,22 +9,18 @@ export interface AppComponentProp { compiler: string; framework: string; }
 export class App extends React.Component<AppComponentProp, {}> {
 
     getTestBot(): Robot {
-        return {
-            id: 1,
+        return new Robot({
+            robotId: 1,
             name: "Johnny 1",
-            configuration: {
+            robotConfigurations: {
                 hasSentience: true,
                 hasWheels: true,
                 hasTracks: true,
-                numberOfRotors: 1,
-                color: "Black"
+                numberOfRotors: 5,
+                color: "Blue"
             },
             statuses: []
-        } as Robot;
-    }
-
-    getRobots(): Robot[] {
-        return [this.getTestBot()];
+        });
     }
 
     getCompiler(): string {
@@ -38,7 +34,7 @@ export class App extends React.Component<AppComponentProp, {}> {
     render() {
         return <div>
             <h1>Hello from {this.getCompiler()} and {this.getFramework()}!</h1>
-            <RbRobotListComponent robots={this.getRobots()} />
+            <RbRobotComponent robot={this.getTestBot()} />
         </div>;
     }
 }
