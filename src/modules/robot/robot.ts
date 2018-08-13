@@ -26,6 +26,12 @@ export const robotStatuses = {
     PAINT_SCRATCHED: "paint scratched"
 };
 
+export const factorySecondStatuses = [
+    robotStatuses.RUSTY,
+    robotStatuses.LOOSE_SCREWS,
+    robotStatuses.PAINT_SCRATCHED
+];
+
 export const robotFilters = {
     SHOW_ALL: "all",
     FACTORY_SECOND: "factory-second",

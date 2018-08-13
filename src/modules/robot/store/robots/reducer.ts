@@ -6,9 +6,9 @@ import { Action } from "redux";
 let initialTestRobots: Robot[] = createTestRobots();
 
 export default function robots(state: Robot[] = initialTestRobots, action: Action): Robot[] {
-    console.log(state, action);
+    console.log(state);
     switch (action.type) {
         default:
           return state
-      }
+    }
 }

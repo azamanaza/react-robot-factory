@@ -1,4 +1,5 @@
 import * as React from "react";
+import RbRobotFilterContainer from "./robot/containers/robot-filter.container";
 import RbRobotListContainer from "./robot/containers/robot-list.container";
 
 export interface AppComponentProp { compiler: string; framework: string; }
@@ -18,6 +19,7 @@ export class App extends React.Component<AppComponentProp, {}> {
     render() {
         return <div>
             <h1>Hello from {this.getCompiler()} and {this.getFramework()}!</h1>
+            <RbRobotFilterContainer />
             <RbRobotListContainer />
         </div>;
     }
