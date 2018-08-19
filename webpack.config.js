@@ -26,7 +26,7 @@ const moduleRules = [
 
 module.exports = {
     entry: {
-        main: ["./src/js/index.tsx", "./src/css/styles.scss", "./src/css/robot.scss"]
+        main: ["./src/js/index.tsx", "./src/css/styles.scss"]
     },
 
     output: {
