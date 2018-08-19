@@ -12,12 +12,14 @@ export default class RbRobotListComponent extends React.Component<RobotListCompo
     }
 
     render() {
-        return <ul>
+        return <div className="row">
             {
                _.map(this.getRobots(), (robot, index) => {
-                    return <li key={ index }><RbRobotComponent robot={robot} /></li>;
+                    return <div className="col" key={ index }>
+                        <div className="card"><RbRobotComponent robot={robot} /></div>
+                    </div>;
                 })
             }
-        </ul>;
+        </div>;
     }
 }

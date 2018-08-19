@@ -1,0 +1,38 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    .col {
+        order: 1;
+        padding: 0 15px;
+        margin-bottom: 15px;
+    }
+}
+
+.card {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.robot {
+    position: relative;
+    min-height: 150px;
+}
+
+.robot-status {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    opacity: .7;
+    &.on-fire {
+        background-image: url('./../images/statuts-on-fire.png');
+        background-size: contain;
+        background-position: bottom bottom;
+        background-repeat: repeat-x;
+    }
+}
