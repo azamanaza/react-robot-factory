@@ -14,8 +14,8 @@ export default class RbRobotListComponent extends React.Component<RobotListCompo
     render() {
         return <div className="row">
             {
-               _.map(this.getRobots(), (robot, index) => {
-                    return <div className="col" key={ index }>
+               _.map(this.getRobots(), (robot) => {
+                    return <div className="col" key={robot.robotId} > 
                         <div className="card"><RbRobotComponent robot={robot} /></div>
                     </div>;
                 })

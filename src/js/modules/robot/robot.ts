@@ -1,3 +1,5 @@
+import { get, includes } from "lodash";
+
 export default class Robot {
     constructor(params: any) {
         this.robotId = params.robotId;
@@ -9,6 +11,26 @@ export default class Robot {
     name: string 
     configuration: RobotConfig
     statuses: string[]
+
+    getStatuses(): string[] {
+        return get(this, "statuses", []);
+    }
+
+    isOnfire(): boolean {
+        return includes(this.statuses, robotStatuses.ON_FIRE);
+    }
+
+    isRusty(): boolean {
+        return includes(this.statuses, robotStatuses.RUSTY);
+    }
+
+    hasLooseScrews(): boolean {
+        return includes(this.statuses, robotStatuses.LOOSE_SCREWS);
+    }
+
+    isPaintScratched(): boolean {
+        return includes(this.statuses, robotStatuses.PAINT_SCRATCHED);
+    }
 }
 
 export class RobotConfig {
@@ -22,7 +44,7 @@ export class RobotConfig {
 export const robotStatuses = {
     ON_FIRE: "on fire",
     RUSTY: "rusty",
-    LOOSE_SCREWS: "lose screws",
+    LOOSE_SCREWS: "loose screws",
     PAINT_SCRATCHED: "paint scratched"
 };
 

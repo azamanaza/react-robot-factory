@@ -1,8 +1,10 @@
 import * as _ from "lodash";
 import * as React from "react";
-import Robot from "../robot";
+import Robot, { robotStatuses } from "../robot";
 
-export interface RobotComponentProp { robot: Robot }
+export interface RobotComponentProp { 
+    robot: Robot
+}
 
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
@@ -12,16 +14,40 @@ export default class RbRobotComponent extends React.Component<RobotComponentProp
         return JSON.stringify(this.props.robot, null, 2);
     }
 
-    getStatusClasses(): string {
-        let statuses = _.map(_.get(this.props, "robot.statuses", []), status => _.replace(status, " ", "-"));
-        statuses.push("robot-status");
-        return _.join(statuses, " ");
+    getStatusClasses(): string[] {
+        return _.map(this.props.robot.getStatuses(), status => _.replace(status, " ", "-"));
+    }
+
+    onActionButtonClick(actionName: string): void {
+        console.log(actionName);
     }
 
     render() {
+
         return <div className="robot">
-            <div className={this.getStatusClasses()} ></div>
+            <div className="status">
+                {this.renderStatuses()}
+            </div>
+            <div className="actions">
+                {this.renderExtinguishButton()}
+            </div>
             <pre>{this.getRobotJson()}</pre>
         </div>;
+    }
+
+    renderStatuses() {
+        return _.map(this.getStatusClasses(), (status, index) => {
+            return <div key={index} className={status}> </div>;
+        })
+    }
+
+    renderExtinguishButton() {
+        let button;
+
+        if (this.props.robot.isOnfire()) {
+            button = <button onClick={() => this.onActionButtonClick("extinguish")}> Extinguish </button>
+        }
+           
+        return button;
     }
 }
