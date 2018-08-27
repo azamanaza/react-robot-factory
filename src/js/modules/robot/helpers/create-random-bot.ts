@@ -3,10 +3,11 @@ import Robot, { robotStatuses, RobotConfig } from "../robot";
 
 export default function createRandomRobot(): Robot {
     let randomId = _.random(1, 10000);
+    let hasWheels = _.random(0, 1) ? true : false;
     let robotConfig = {
         hasSentience: _.random(0, 1) ? true : false,
-        hasWheels: _.random(0, 1) ? true : false,
-        hasTracks: _.random(0, 1) ? true : false,
+        hasWheels: hasWheels,
+        hasTracks: !hasWheels,
         numberOfRotors: _.random(0, 10),
         color: _.sample(["Red", "Green", "Blue", "Yellow"])
     } as RobotConfig;

@@ -1,6 +1,8 @@
 import * as _ from "lodash";
 import * as React from "react";
 import Robot, { robotStatuses } from "../robot";
+import RbRobotStatuses from "./robot-statuses.component";
+import RbRobotConfigurations from "./robot-configurations.component";
 
 export interface RobotComponentProp { 
     robot: Robot
@@ -14,31 +16,23 @@ export default class RbRobotComponent extends React.Component<RobotComponentProp
         return JSON.stringify(this.props.robot, null, 2);
     }
 
-    getStatusClasses(): string[] {
-        return _.map(this.props.robot.getStatuses(), status => _.replace(status, " ", "-"));
-    }
-
     onActionButtonClick(actionName: string): void {
         console.log(actionName);
     }
 
     render() {
-
+        let robot = this.props.robot;
         return <div className="robot">
-            <div className="status">
-                {this.renderStatuses()}
-            </div>
+            <RbRobotStatuses statuses={robot.statuses} />
+            <div>ID: {robot.robotId}</div>
+            <div>Name: {robot.name}</div>
+            <div></div>
+            <RbRobotConfigurations configuration={robot.configuration} />
             <div className="actions">
                 {this.renderExtinguishButton()}
             </div>
             <pre>{this.getRobotJson()}</pre>
         </div>;
-    }
-
-    renderStatuses() {
-        return _.map(this.getStatusClasses(), (status, index) => {
-            return <div key={index} className={status}> </div>;
-        })
     }
 
     renderExtinguishButton() {

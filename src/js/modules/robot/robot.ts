@@ -1,4 +1,4 @@
-import { get, includes } from "lodash";
+import { get, includes, Dictionary } from "lodash";
 
 export default class Robot {
     constructor(params: any) {
@@ -32,13 +32,13 @@ export default class Robot {
         return includes(this.statuses, robotStatuses.PAINT_SCRATCHED);
     }
 }
-
 export class RobotConfig {
     hasSentience: boolean
     hasWheels: boolean
     hasTracks: boolean
     numberOfRotors: number
     color: string
+    [propName: string]: any
 }
 
 export const robotStatuses = {

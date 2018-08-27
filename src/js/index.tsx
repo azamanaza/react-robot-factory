@@ -10,7 +10,7 @@ const store = createStore(robotReducers)
 
 ReactDOM.render(
     <Provider store={store}>
-        <App compiler="TypeScript" framework="React" />
+        <App/>
     </Provider>,
     document.getElementById("root")
 );

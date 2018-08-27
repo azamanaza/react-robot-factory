@@ -6,19 +6,10 @@ export interface AppComponentProp { compiler: string; framework: string; }
 
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
-export class App extends React.Component<AppComponentProp, {}> {
-
-    getCompiler(): string {
-        return this.props.compiler;
-    }
-
-    getFramework(): string  {
-        return this.props.framework;
-    }
-
+export class App extends React.Component {
     render() {
         return <div>
-            <h1>Hello from {this.getCompiler()} and {this.getFramework()}!</h1>
+            <h1>Robot Factory</h1>
             <RbRobotFilterContainer />
             <RbRobotListContainer />
         </div>;
