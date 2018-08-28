@@ -1,5 +1,21 @@
 .robot {
     min-height: 150px;
+    width: 300px;
+}
+
+.robot-filters {
+    .btn {
+        border: 1px solid #ccc;
+        border-radius: 0;
+    }
+    .btn:first-child {
+        border-radius: 10px 0 0 10px;
+        border-right: none;
+    }
+    .btn:last-child {
+        border-radius: 0 10px 10px 0;
+        border-left: none;
+    }
 }
 
 ul.robot-actions,
@@ -21,6 +37,66 @@ ul.robot-statuses {
 
         i {
             vertical-align: middle;
+        }
+    }
+}
+
+ul.robot-configurations {
+    padding: 10px;
+    background-color: #888;
+    border: 1px solid #333;
+    display: block;
+
+    li {
+        background-color: #fff;
+        border: 1px solid #333;
+        border-radius: 10px;
+        display: block;
+        margin: 0 0 5px;
+        padding: 0;
+
+        .col {
+            padding: 0;
+            margin: 0;
+            display: inline-block;
+            vertical-align: top;
+            width: auto;
+            height: 40px;
+
+            &:first-child {
+                width: 24%;
+                border-right: 1px solid #000;
+            }
+            &:last-child {
+                width: 75%;
+                text-align: left;
+            }
+        }
+
+        .config-icon {
+            text-align: center;
+            height: 40px;
+        }
+
+        .config-value {
+            text-align: left;
+            padding: 10px;
+
+            .robot-color {
+                height: 20px;
+                width: 20px;
+            }
+        }
+
+        .config-icon,
+        .config-value {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        &:last-child {
+            margin: 0;
         }
     }
 }

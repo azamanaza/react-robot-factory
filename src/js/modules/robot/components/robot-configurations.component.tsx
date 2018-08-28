@@ -6,21 +6,30 @@ export interface RbRobotConfigurationsProp {
     configuration: RobotConfig
 }
 
-const configToIconMap: _.Dictionary<string> = {
-    hasSentience: "fa-brain",
-    hasWheels: "fa-compact-disc",
-    hasTracks: "fa-life-ring",
-    numberOfRotors: "fa-cog",
+const configDisplayMap: _.Dictionary<any> = {
+    hasSentience: {
+        className: "fa-brain",
+        label: "Sentient"
+    },
+    hasWheels: {
+        className: "fa-compact-disc",
+        label: "Has wheels"
+    },
+    hasTracks: {
+        className: "fa-life-ring",
+        label: "Has tracks"
+    },
+    numberOfRotors: {
+        className: "fa-cog",
+        label: "Number of rotors"
+    },
     color: "fa-brush"
 }
-
-// 'HelloProps' describes the shape of props.
-// State is never set so we use the '{}' type.
 export default class RbRobotConfigurations extends React.Component<RbRobotConfigurationsProp, {}> {
 
     renderConfigIcon(configKey: string): JSX.Element {
         let classNames: string[] = ["fas"]
-        classNames.push(configToIconMap[configKey]);
+        classNames.push(configDisplayMap[configKey].className);
         
         if (_.isBoolean(this.props.configuration[configKey]) && this.props.configuration[configKey] === false ) {
             classNames.push("disabled");
@@ -29,11 +38,30 @@ export default class RbRobotConfigurations extends React.Component<RbRobotConfig
         return <i className={_.join(classNames, " ")}></i>
     }
 
+    getConfigDisplay(configKey: string): any {
+        let display: any = undefined;
+        if (configKey === "numberOfRotors") {
+            display = configDisplayMap[configKey].label + ": " + this.props.configuration[configKey];
+        } else if(configKey === "color") {
+            display = <div className="robot-color" style={{backgroundColor: this.props.configuration[configKey]}}></div>
+        } else {
+            display = configDisplayMap[configKey].label;
+        }
+        return display;
+    }
+
     render() {
         return <ul className="robot-configurations">
             {_.map(_.keys(this.props.configuration), (configKey: string, index: number) => {
-                return <li key={index} className={_.kebabCase(configKey)}>
-                    {this.renderConfigIcon(configKey)}
+                return <li key={index} className={_.kebabCase(configKey) + " row align-left"}>
+                    <div className="col">
+                        <div className="config-icon">{this.renderConfigIcon(configKey)}</div>
+                    </div>
+                    <div className="col">
+                        <div className="config-value">
+                            {this.getConfigDisplay(configKey)}
+                        </div>
+                    </div>
                 </li>
             })}
         </ul>;

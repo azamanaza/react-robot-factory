@@ -14,7 +14,7 @@ const statusToIconMap: _.Dictionary<string> = {
 
 export default class RbRobotStatuses extends React.Component<RbRobotStatusesProp, {}> {
     render() {
-        return <ul className="robot-statuses row align-left">
+        return <ul className="robot-statuses row align-right">
             {_.map(this.props.statuses, (status: string, index: number) => {
                 return <li className="col" key={index}>{status}</li>
             })}

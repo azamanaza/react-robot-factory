@@ -7,7 +7,7 @@ interface RobotListComponentProp { robots: Robot[] }
 
 export default class RbRobotListComponent extends React.Component<RobotListComponentProp, {}> {
     render() {
-        return <div className="row">
+        return <div className="row align-left">
             {
                _.map(this.props.robots, (robot) => {
                     return <div className="col" key={robot.robotId} > 

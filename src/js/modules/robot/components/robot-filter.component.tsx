@@ -14,10 +14,12 @@ export default class RbRobotListComponent extends React.Component<RobotFilterCom
 
     render() {
         return (
-            <div>
-                <button onClick={() => this.setFilter(robotFilters.SHOW_ALL)}> ALL </button>
-                <button onClick={() => this.setFilter(robotFilters.FACTORY_SECOND)}> Factory Second </button>
-                <button onClick={() => this.setFilter(robotFilters.QA_PASSED)}> Qa Passed </button>
+            <div className="robot-filters row align-left">
+                <div className="col">
+                    <div className="btn" onClick={() => this.setFilter(robotFilters.SHOW_ALL)}> ALL </div>
+                    <div className="btn" onClick={() => this.setFilter(robotFilters.FACTORY_SECOND)}> Factory Second </div>
+                    <div className="btn" onClick={() => this.setFilter(robotFilters.QA_PASSED)}> Qa Passed </div>
+                </div>
             </div>
         );
     }
