@@ -21,5 +21,5 @@ export const isFactorySecond = (robot: Robot): boolean => {
 }
 
 export const isQaPassed = (robot: Robot): boolean => {
-    return !isFactorySecond(robot);
+    return !shouldExtinguish(robot) && !shouldRecycle(robot) && _.isEmpty(robot.statuses);
 }
