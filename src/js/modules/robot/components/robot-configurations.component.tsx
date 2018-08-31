@@ -23,7 +23,10 @@ const configDisplayMap: _.Dictionary<any> = {
         className: "fa-cog",
         label: "Number of rotors"
     },
-    color: "fa-brush"
+    color: {
+        className: "fa-brush",
+        label: "Color"
+    }
 }
 export default class RbRobotConfigurations extends React.Component<RbRobotConfigurationsProp, {}> {
 
@@ -43,7 +46,7 @@ export default class RbRobotConfigurations extends React.Component<RbRobotConfig
         if (configKey === "numberOfRotors") {
             display = configDisplayMap[configKey].label + ": " + this.props.configuration[configKey];
         } else if(configKey === "color") {
-            display = <div className="robot-color" style={{backgroundColor: this.props.configuration[configKey]}}></div>
+            display = <span className="robot-color" style={{backgroundColor: this.props.configuration[configKey]}}></span>
         } else {
             display = configDisplayMap[configKey].label;
         }
@@ -55,7 +58,7 @@ export default class RbRobotConfigurations extends React.Component<RbRobotConfig
             {_.map(_.keys(this.props.configuration), (configKey: string, index: number) => {
                 return <li key={index} className={_.kebabCase(configKey) + " row align-left"}>
                     <div className="col">
-                        <div className="config-icon">{this.renderConfigIcon(configKey)}</div>
+                        <div className="config-icon va-mid-wrapper">{this.renderConfigIcon(configKey)}</div>
                     </div>
                     <div className="col">
                         <div className="config-value">
