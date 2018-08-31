@@ -3,11 +3,10 @@ import Robot, { robotStatuses, RobotConfig } from "../robot";
 
 export default function createRandomRobot(): Robot {
     let randomId = _.random(1, 10000);
-    let hasWheels = _.random(0, 1) ? true : false;
     let robotConfig = {
         hasSentience: _.random(0, 1) ? true : false,
-        hasWheels: hasWheels,
-        hasTracks: !hasWheels,
+        hasWheels: _.random(0, 1) ? true : false,
+        hasTracks: _.random(0, 1) ? true : false,
         numberOfRotors: _.random(0, 10),
         color: _.sample(["Red", "Green", "Blue", "Yellow"])
     } as RobotConfig;
@@ -21,6 +20,6 @@ export default function createRandomRobot(): Robot {
     })
 }
 
-export function createTestRobots(): Robot[] {
-    return _.map(new Array(10), () => createRandomRobot());
+export function createTestRobots(numberOfRobots: number = 10): Robot[] {
+    return _.map(new Array(numberOfRobots), () => createRandomRobot());
 }
