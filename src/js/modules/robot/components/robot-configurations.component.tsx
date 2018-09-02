@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import { isBoolean, join, kebabCase, keys, map } from "lodash";
 import * as React from "react";
 import { RobotConfig } from "./../robot";
 
@@ -34,11 +34,11 @@ export default class RbRobotConfigurations extends React.Component<RbRobotConfig
         let classNames: string[] = ["fas"]
         classNames.push(configDisplayMap[configKey].className);
         
-        if (_.isBoolean(this.props.configuration[configKey]) && this.props.configuration[configKey] === false ) {
+        if (isBoolean(this.props.configuration[configKey]) && this.props.configuration[configKey] === false ) {
             classNames.push("disabled");
         }
 
-        return <i className={_.join(classNames, " ")}></i>
+        return <i className={join(classNames, " ")}></i>
     }
 
     getConfigDisplay(configKey: string): any {
@@ -53,19 +53,26 @@ export default class RbRobotConfigurations extends React.Component<RbRobotConfig
         return display;
     }
 
+    isConfigEnabled(configKey: string): boolean {
+        console.log(configKey, " >>> ", isBoolean(this.props.configuration[configKey]), this.props.configuration[configKey]);
+        return (isBoolean(this.props.configuration[configKey])) ? this.props.configuration[configKey] : true; 
+    }
+
     render() {
         return <ul className="robot-configurations">
-            {_.map(_.keys(this.props.configuration), (configKey: string, index: number) => {
-                return <li key={index} className={_.kebabCase(configKey) + " row align-left"}>
-                    <div className="col">
-                        <div className="config-icon va-mid-wrapper">{this.renderConfigIcon(configKey)}</div>
-                    </div>
-                    <div className="col">
-                        <div className="config-value">
-                            {this.getConfigDisplay(configKey)}
+            {map(keys(this.props.configuration), (configKey: string, index: number) => {
+                if (this.isConfigEnabled(configKey)) {
+                    return <li key={index} className={kebabCase(configKey) + " row align-left"}>
+                        <div className="col">
+                            <div className="config-icon va-mid-wrapper">{this.renderConfigIcon(configKey)}</div>
                         </div>
-                    </div>
-                </li>
+                        <div className="col">
+                            <div className="config-value">
+                                {this.getConfigDisplay(configKey)}
+                            </div>
+                        </div>
+                    </li>
+                } 
             })}
         </ul>;
     }
