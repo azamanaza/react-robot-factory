@@ -1,6 +1,6 @@
 import { createTestRobots } from "./../helpers/create-random-bot";
 import * as _ from "lodash";
-import Robot from "./../robot";
+import Robot from "./../robot.type";
 import { Promise } from "es6-promise";
 
 export default class RobotService {
@@ -13,19 +13,19 @@ export default class RobotService {
 
     extinguishRobot(robotId: number): Promise<number> {
         return new Promise((resolve, reject) => {
-            setTimeout(resolve, robotId, _.random(.5,1)*1000);
+            setTimeout(resolve, _.random(.5,1)*1000, robotId);
         });
     }
 
     recycleRobots(robotIds: number[]): Promise<number[]> {
         return new Promise((resolve, reject) => {
-            setTimeout(resolve, robotIds, _.random(.5,1)*1000);
+            setTimeout(resolve, _.random(.5,1)*1000, robotIds);
         });
     }
 
     shipRobots(robotIds: number[]): Promise<number[]> {
         return new Promise((resolve, reject) => {
-            setTimeout(resolve, robotIds, _.random(.5,1)*1000);
+            setTimeout(resolve, _.random(.5,1)*1000, robotIds);
         });
     }
     

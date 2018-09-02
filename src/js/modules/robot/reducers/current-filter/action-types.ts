@@ -1,1 +1,0 @@
-export const FILTER_ROBOT_LIST = "robots.FILTER_LIST";

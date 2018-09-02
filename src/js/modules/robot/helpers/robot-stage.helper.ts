@@ -1,5 +1,5 @@
 import { includes, difference, isEmpty } from "lodash";
-import Robot, { robotStatuses } from "./../robot";
+import Robot, { robotStatuses } from "./../robot.type";
 
 export const shouldExtinguish = (robot: Robot): boolean => {
     return robot.configuration.hasSentience 

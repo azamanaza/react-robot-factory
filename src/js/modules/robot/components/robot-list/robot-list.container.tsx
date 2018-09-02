@@ -1,14 +1,14 @@
 import { connect } from "react-redux";
-import { Dispatch, AnyAction } from "redux";
-import { ThunkDispatch, ThunkAction } from "redux-thunk";
+import { AnyAction } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 
 import * as _ from "lodash";
 
-import Robot from "./../robot";
-import RbRobotListComponent, { StateProps, DispatchProps} from "./../components/robot-list";
-import { robotFilters } from "../robot"
-import * as robotStatusHelper from "./../helpers/robot-stage.helper";
-import { getRobotsThunk } from "./../reducers/robot/thunks";
+import Robot from "./../../robot.type";
+import RbRobotListComponent, { StateProps, DispatchProps} from "./robot-list";
+import { robotFilters } from "./../robot-filter/robot-filter.constants"
+import * as robotStatusHelper from "../../helpers/robot-stage.helper";
+import { getRobotsThunk } from "./redux/actions";
 
 const filterList = (state: any): Robot[] => {
     console.log(state);

@@ -1,5 +1,5 @@
 
-import Robot from "../../robot";
+import Robot from "./../../../robot.type";
 import { AnyAction } from "redux";
 import { GET_ROBOTS_SUCCESS } from "./action-types";
 

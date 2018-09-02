@@ -1,6 +1,6 @@
 import * as React from "react";
-import RbRobotFilterContainer from "./robot/containers/robot-filter.container";
-import RbRobotListContainer from "./robot/containers/robot-list.container";
+import RbRobotFilterContainer from "./robot/components/robot-filter/robot-filter.container";
+import RbRobotListContainer from "./robot/components/robot-list/robot-list.container";
 
 export interface AppComponentProp { compiler: string; framework: string; }
 

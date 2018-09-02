@@ -1,21 +1,19 @@
 import * as React from "react";
-import { robotFilters } from "./../robot";
+import { robotFilters } from "./robot-filter.constants";
 
 export interface StateProps {
     currentFilter: string;
 }
 
 export interface DispatchProps {
-    clickHandler: (filter: string) => void;
+    setFilter: (filter: string) => void;
 }
 
 export type RbRobotListComponentProps = StateProps & DispatchProps;
 export default class RbRobotListComponent extends React.Component<RbRobotListComponentProps, {}> {
 
     setFilter(filter: string): void {
-        if (this.props.clickHandler) {
-            this.props.clickHandler(filter);
-        }
+        this.props.setFilter(filter);
     }
 
     getClassName(filter: string): string {

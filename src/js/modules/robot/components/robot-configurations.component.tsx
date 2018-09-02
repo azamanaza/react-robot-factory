@@ -1,6 +1,6 @@
 import { isBoolean, join, kebabCase, keys, map } from "lodash";
 import * as React from "react";
-import { RobotConfig } from "./../robot";
+import { RobotConfig } from "./../robot.type";
 
 export interface RbRobotConfigurationsProp { 
     configuration: RobotConfig
@@ -54,7 +54,6 @@ export default class RbRobotConfigurations extends React.Component<RbRobotConfig
     }
 
     isConfigEnabled(configKey: string): boolean {
-        console.log(configKey, " >>> ", isBoolean(this.props.configuration[configKey]), this.props.configuration[configKey]);
         return (isBoolean(this.props.configuration[configKey])) ? this.props.configuration[configKey] : true; 
     }
 

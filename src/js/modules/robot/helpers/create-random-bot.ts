@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import Robot, { robotStatuses, RobotConfig } from "../robot";
+import Robot, { robotStatuses, RobotConfig } from "./../robot.type";
 
 export default function createRandomRobot(): Robot {
     let randomId = _.random(1, 10000);

@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import * as React from "react";
-import Robot, { robotStatuses } from "../robot";
+import Robot, { robotStatuses } from "./../robot.type";
 import RbRobotStatuses from "./robot-statuses.component";
 import RbRobotConfigurations from "./robot-configurations.component";
 
@@ -11,10 +11,6 @@ export interface RobotComponentProp {
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export default class RbRobotComponent extends React.Component<RobotComponentProp, {}> {
-
-    getRobotJson(): string {
-        return JSON.stringify(this.props.robot, null, 2);
-    }
 
     onActionButtonClick(actionName: string): void {
         console.log(actionName);
@@ -31,7 +27,6 @@ export default class RbRobotComponent extends React.Component<RobotComponentProp
             <div className="actions">
                 {this.renderExtinguishButton()}
             </div>
-            <pre>{this.getRobotJson()}</pre>
         </div>;
     }
 

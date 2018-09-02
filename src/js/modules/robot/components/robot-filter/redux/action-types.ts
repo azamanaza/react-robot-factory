@@ -1,0 +1,1 @@
+export const SET_ROBOT_LIST_FILTER = "robots.FILTER.SET";

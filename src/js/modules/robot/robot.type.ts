@@ -32,6 +32,7 @@ export default class Robot {
         return includes(this.statuses, robotStatuses.PAINT_SCRATCHED);
     }
 }
+
 export class RobotConfig {
     hasSentience: boolean
     hasWheels: boolean
@@ -47,15 +48,3 @@ export const robotStatuses: Dictionary<string> = {
     LOOSE_SCREWS: "loose screws",
     PAINT_SCRATCHED: "paint scratched"
 };
-
-export const factorySecondStatuses = [
-    robotStatuses.RUSTY,
-    robotStatuses.LOOSE_SCREWS,
-    robotStatuses.PAINT_SCRATCHED
-];
-
-export const robotFilters: Dictionary<string> = {
-    SHOW_ALL: "all",
-    FACTORY_SECOND: "factory-second",
-    QA_PASSED: "qa-passed"
-}

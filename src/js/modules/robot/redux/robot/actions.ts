@@ -1,10 +1,8 @@
 import { 
     EXTINGUISH_ROBOTS, 
     RECYCLE_ROBOTS, 
-    SHIP_ROBOTS, 
-    GET_ROBOTS, 
-    FILTER_ROBOT_LIST,
-    ROBOTS_LOADING 
+    SHIP_ROBOTS,
+    FILTER_ROBOT_LIST 
 } from "./action-types";
 
 export const extinguishRobot = (robotId: number) => {
@@ -43,11 +41,3 @@ export const filterRobotList = (filter: string) => {
     }
 }
 
-export const robotsLoading = (state: boolean) => {
-    return {
-        type: ROBOTS_LOADING,
-        payload: {
-            state: state
-        }
-    }
-}
