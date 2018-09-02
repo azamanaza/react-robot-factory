@@ -4,8 +4,8 @@ import { ThunkDispatch, ThunkAction } from "redux-thunk";
 
 import * as _ from "lodash";
 
-import Robot from "../robot";
-import RbRobotListComponent, { StateProps, DispatchProps} from "../components/robot-list.component";
+import Robot from "./../robot";
+import RbRobotListComponent, { StateProps, DispatchProps} from "./../components/robot-list";
 import { robotFilters } from "../robot"
 import * as robotStatusHelper from "./../helpers/robot-stage.helper";
 import { getRobotsThunk } from "./../reducers/robot/thunks";
@@ -27,7 +27,7 @@ const filterList = (state: any): Robot[] => {
     return robots;
 }
 
-const mapStateToProps = (state: any) : StateProps=> {
+const mapStateToProps = (state: any) : StateProps => {
     return {
         robots: filterList(state)
     }

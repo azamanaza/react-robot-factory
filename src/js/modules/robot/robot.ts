@@ -1,4 +1,4 @@
-import { get, includes } from "lodash";
+import { Dictionary, get, includes } from "lodash";
 
 export default class Robot {
     constructor(params: any) {
@@ -41,7 +41,7 @@ export class RobotConfig {
     [propName: string]: any
 }
 
-export const robotStatuses = {
+export const robotStatuses: Dictionary<string> = {
     ON_FIRE: "on fire",
     RUSTY: "rusty",
     LOOSE_SCREWS: "loose screws",
@@ -54,7 +54,7 @@ export const factorySecondStatuses = [
     robotStatuses.PAINT_SCRATCHED
 ];
 
-export const robotFilters = {
+export const robotFilters: Dictionary<string> = {
     SHOW_ALL: "all",
     FACTORY_SECOND: "factory-second",
     QA_PASSED: "qa-passed"

@@ -16,7 +16,7 @@ export const store: Store<RobotState> = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <App />
     </Provider>,
     document.getElementById("root")
 );
