@@ -31,9 +31,11 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@types/es6-promise": "^3.3.0",
     "awesome-typescript-loader": "^5.2.0",
     "css-loader": "^1.0.0",
     "file-loader": "^1.1.11",

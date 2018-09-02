@@ -1,4 +1,4 @@
-import { get, includes, Dictionary } from "lodash";
+import { get, includes } from "lodash";
 
 export default class Robot {
     constructor(params: any) {

@@ -3,9 +3,22 @@ import * as _ from "lodash";
 import Robot from "../robot";
 import RbRobotComponent from "./robot.component";
 
-interface RobotListComponentProp { robots: Robot[] }
+export interface StateProps {
+    robots: Robot[]
+}
+       
+export interface DispatchProps {
+    getRobots: () => any
+}
+
+type RobotListComponentProp = StateProps & DispatchProps;
 
 export default class RbRobotListComponent extends React.Component<RobotListComponentProp, {}> {
+
+    componentDidMount() {
+        this.props.getRobots();
+    }
+
     render() {
         return <div className="row align-left">
             {

@@ -1,12 +1,18 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { createStore } from "redux";
+import { Store, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import robotReducers from "./modules/robot/reducers";
+import reduxThunk  from "redux-thunk";
+import { RobotState, robotState} from "./modules/robot/reducers";
 
 import { App } from "./modules/app.component";
 
-const store = createStore(robotReducers)
+export const store: Store<RobotState> = createStore(
+    robotState,
+    compose(
+        applyMiddleware(reduxThunk),
+    )
+);
 
 ReactDOM.render(
     <Provider store={store}>

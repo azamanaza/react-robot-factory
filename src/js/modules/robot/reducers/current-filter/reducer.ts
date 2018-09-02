@@ -10,6 +10,6 @@ export default function currentFilter(state: string = initialState, action: Filt
         case FILTER_ROBOT_LIST:
             return action.payload.filter;
         default:
-          return state;
+            return state;
     }
 }
