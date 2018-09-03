@@ -12,7 +12,6 @@ import RobotListItem from "./types";
 
 const filterList = (state: any): RobotListItem[] => {
     let robots: RobotListItem[];
-    console.log(state);
     switch(state.currentFilter) {
         case robotFilters.FACTORY_SECOND:
             robots = filter(state.robots, (robot: RobotListItem) => robotStatusHelper.isFactorySecond(robot) && !robot.isForShipping);
