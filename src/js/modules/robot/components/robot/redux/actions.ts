@@ -2,32 +2,12 @@ import { ActionCreator, AnyAction, Dispatch } from "redux";
 
 import RobotService from "./../../../services/robot.service";
 import { 
-    EXTINGUISH_ROBOTS, 
-    RECYCLE_ROBOTS, 
-    SHIP_ROBOTS, 
-    EXTINGUISH_ROBOTS_SUCCESS
+    EXTINGUISH_ROBOTS_SUCCESS,
+    RECYCLE_ROBOTS_SUCCESS
 } from "./action-types";
 import { appLoading } from "./../../../redux/action";
 
 const robotService = new RobotService();
-
-export const recycleRobots = (robotIds: number[]) => {
-    return {
-        type: RECYCLE_ROBOTS,
-        payload: {
-            robotIds: robotIds
-        }
-    };
-}
-
-export const shipRobots = (robotIds: number[]) => {
-    return {
-        type: SHIP_ROBOTS,
-        payload: {
-            robotIds: robotIds
-        }
-    };
-}
 
 export const extinguishRobotThunk = (robotId: number) => (dispatch: Dispatch<any>) => {
     dispatch(appLoading(true));
@@ -49,6 +29,30 @@ export const robotExtinguishSuccess: ActionCreator<AnyAction> = (robotId: number
         type: EXTINGUISH_ROBOTS_SUCCESS,
         payload: {
             robotId: robotId
+        }
+    }
+}
+
+export const recycleRobotThunk = (robotId: number) => (dispatch: Dispatch<any>) => {
+    dispatch(appLoading(true));
+
+    robotService.recycleRobots([robotId])
+            .then((robotIds: number[]) => {
+                // already faked as Robot[], will map again to keep ts happy.
+                dispatch(recycleRobotsSuccess(robotIds));
+            })
+            .catch(error => {
+                // handle error
+            }).finally(() => {
+                dispatch(appLoading(false));
+            });
+}
+
+export const recycleRobotsSuccess: ActionCreator<AnyAction> = (robotIds: number[]) => {
+    return {
+        type: RECYCLE_ROBOTS_SUCCESS,
+        payload: {
+            robotIds: robotIds
         }
     }
 }

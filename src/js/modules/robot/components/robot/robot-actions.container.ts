@@ -3,7 +3,7 @@ import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import { connect } from "react-redux";
 import RobotActions, { StateProp, DispatchProp } from "./robot-actions";
-import { extinguishRobotThunk } from "./redux/actions";
+import { extinguishRobotThunk, recycleRobotThunk } from "./redux/actions";
 
 import Robot from "./../../robot.type";
 
@@ -21,6 +21,8 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, void, AnyAction>): Disp
         switch(robotAction) {
             case "extinguish":
                 return dispatch(extinguishRobotThunk(robotId));
+            case "recycle":
+                return dispatch(recycleRobotThunk(robotId));
             default:
                 break;
         }

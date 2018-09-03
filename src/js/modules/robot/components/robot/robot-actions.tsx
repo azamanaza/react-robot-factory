@@ -16,6 +16,7 @@ type RobotActionsProps = StateProp & DispatchProp;
 export default class RobotActions extends React.Component<RobotActionsProps, {}> {
 
     onActionButtonClick(actionName: string): void {
+        console.log(actionName);
         this.props.onActionButtonClick(actionName, this.props.robot.robotId);
     }
 
