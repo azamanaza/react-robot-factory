@@ -22,6 +22,10 @@
     & > .col {
         width: 45%;
     }
+
+    .btn {
+        margin-left: 5px;
+    }
 }
 ul.robot-actions,
 ul.robot-configurations,
@@ -106,4 +110,14 @@ ul.robot-configurations {
             margin: 0;
         }
     }
+}
+
+.robot-actions {
+    button {
+        margin-right: 5px;
+    }
+}
+
+.ship-robots {
+    margin-left: 5px;
 }

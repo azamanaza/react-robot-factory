@@ -46,7 +46,7 @@ export const shipRobotsThunk = (robotIds: number[]) => (dispatch: Dispatch<any>)
 
     robotService.shipRobots(robotIds)
             .then(data => {
-                dispatch(robotLoadSuccess(data));
+                dispatch(robotShipSuccess(data));
             }).catch(error => {
                 // handle error
             }).finally(() => {

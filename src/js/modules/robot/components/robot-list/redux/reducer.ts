@@ -7,6 +7,7 @@ import { robotStatuses } from "./../../../robot.type";
 import RobotListItem from "../types";
 
 export default function robots(state: RobotListItem[] = [], action: AnyAction): RobotListItem[] {
+    console.log(action,)
     switch (action.type) {
         case GET_ROBOTS_SUCCESS:
             return action.payload.robots;
@@ -36,6 +37,7 @@ export default function robots(state: RobotListItem[] = [], action: AnyAction): 
                 return robot; 
             });
         case SHIP_ROBOTS_SUCCESS:
+            console.log(action, state);
             return filter(state, (robot: RobotListItem) => {
                 return !includes(action.payload.robotIds, robot.robotId);
             }); 
