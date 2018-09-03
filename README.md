@@ -23,6 +23,8 @@ npm run build
 ```
 
 TOO:
+- Add start command for easier app launch/demo
+- Bundle vendor files
 - Add tests
 - Polish styles
 - Mock api with express.
