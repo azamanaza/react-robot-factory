@@ -19,7 +19,6 @@ export default class RbRobotComponent extends React.Component<RobotComponentProp
             <RbRobotStatuses statuses={robot.statuses} />
             <div>ID: {robot.robotId}</div>
             <div>Name: {robot.name}</div>
-            <div></div>
             <RbRobotConfigurations configuration={robot.configuration} />
             <RobotActionsContainer robotId={robot.robotId} />
         </div>;

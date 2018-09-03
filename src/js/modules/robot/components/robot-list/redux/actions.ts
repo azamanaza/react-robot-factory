@@ -3,7 +3,7 @@ import { AnyAction, ActionCreator, Dispatch } from "redux";
 
 import Robot from "./../../../robot.type";
 import RobotService from "./../../../services/robot.service";
-import { GET_ROBOTS_SUCCESS, GET_ROBOTS_ERROR } from "./action-types";
+import { GET_ROBOTS_SUCCESS, GET_ROBOTS_ERROR, SHIP_ROBOTS, SHIP_ROBOTS_SUCCESS } from "./action-types";
 import { appLoading } from "./../../../redux/action";
 import RobotListItem from "./../types";
 
@@ -37,6 +37,28 @@ export const robotLoadError: ActionCreator<AnyAction> = (errorMessage: string) =
         type: GET_ROBOTS_ERROR,
         payload: {
             errorMessage: errorMessage
+        }
+    }
+}
+
+export const shipRobotsThunk = (robotIds: number[]) => (dispatch: Dispatch<any>) => {
+    dispatch(appLoading(true));
+
+    robotService.shipRobots(robotIds)
+            .then(data => {
+                dispatch(robotLoadSuccess(data));
+            }).catch(error => {
+                // handle error
+            }).finally(() => {
+                dispatch(appLoading(false));
+            });
+}
+
+export const robotShipSuccess: ActionCreator<AnyAction> = (robotIds: number[]) => {
+    return {
+        type: SHIP_ROBOTS_SUCCESS,
+        payload: {
+            robotIds: robotIds
         }
     }
 }
