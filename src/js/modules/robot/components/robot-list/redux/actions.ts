@@ -1,10 +1,11 @@
-import * as _ from "lodash";
+import { map } from "lodash";
 import { AnyAction, ActionCreator, Dispatch } from "redux";
 
 import Robot from "./../../../robot.type";
-import RobotService from "../../../services/robot.service";
+import RobotService from "./../../../services/robot.service";
 import { GET_ROBOTS_SUCCESS, GET_ROBOTS_ERROR } from "./action-types";
-import { appLoading } from "../../../redux/action";
+import { appLoading } from "./../../../redux/action";
+import RobotListItem from "./../types";
 
 
 const robotService = new RobotService();
@@ -14,10 +15,8 @@ export const getRobotsThunk = () => (dispatch: Dispatch<any>) => {
 
     robotService.getRobots()
             .then(data => {
-                // already faked as Robot[], will map again to keep ts happy.
-                dispatch(robotLoadSuccess(data));
-            })
-            .catch(error => {
+                dispatch(robotLoadSuccess(map(data, (robot: Robot) => new RobotListItem(robot))));
+            }).catch(error => {
                 // handle error
             }).finally(() => {
                 dispatch(appLoading(false));

@@ -3,7 +3,9 @@ import { ActionCreator, AnyAction, Dispatch } from "redux";
 import RobotService from "./../../../services/robot.service";
 import { 
     EXTINGUISH_ROBOTS_SUCCESS,
-    RECYCLE_ROBOTS_SUCCESS
+    RECYCLE_ROBOTS_SUCCESS,
+    ADD_ROBOT_SHIPMENT,
+    REMOVE_ROBOT_SHIPMENT
 } from "./action-types";
 import { appLoading } from "./../../../redux/action";
 
@@ -53,6 +55,24 @@ export const recycleRobotsSuccess: ActionCreator<AnyAction> = (robotIds: number[
         type: RECYCLE_ROBOTS_SUCCESS,
         payload: {
             robotIds: robotIds
+        }
+    }
+}
+
+export const addRobotToShipment: ActionCreator<AnyAction> = (robotId: number) => {
+    return {
+        type: ADD_ROBOT_SHIPMENT,
+        payload: {
+            robotId: robotId
+        }
+    }
+}
+
+export const removeRobotFromShipment: ActionCreator<AnyAction> = (robotId: number) => {
+    return {
+        type: REMOVE_ROBOT_SHIPMENT,
+        payload: {
+            robotId: robotId
         }
     }
 }

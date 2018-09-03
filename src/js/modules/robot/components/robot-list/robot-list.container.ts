@@ -2,25 +2,25 @@ import { connect } from "react-redux";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
-import * as _ from "lodash";
+import { filter } from "lodash";
 
-import Robot from "./../../robot.type";
 import RbRobotListComponent, { StateProps, DispatchProps} from "./robot-list";
-import { robotFilters } from "./../robot-filter/robot-filter.constants"
+import { robotFilters } from "../robot-filter/robot-filter.constants"
 import * as robotStatusHelper from "../../helpers/robot-stage.helper";
 import { getRobotsThunk } from "./redux/actions";
+import RobotListItem from "./types";
 
-const filterList = (state: any): Robot[] => {
-    let robots: Robot[];
+const filterList = (state: any): RobotListItem[] => {
+    let robots: RobotListItem[];
     switch(state.currentFilter) {
         case robotFilters.FACTORY_SECOND:
-            robots = _.filter(state.robots, (robot: Robot) => robotStatusHelper.isFactorySecond(robot));
+            robots = filter(state.robots, (robot: RobotListItem) => robotStatusHelper.isFactorySecond(robot) && !robot.isForShipping);
             break;
         case robotFilters.QA_PASSED:
-            robots = _.filter(state.robots, (robot: Robot) => robotStatusHelper.isQaPassed(robot));
+            robots = filter(state.robots, (robot: RobotListItem) => robotStatusHelper.isQaPassed(robot) && !robot.isForShipping);
             break;
         default:
-            robots = state.robots;
+            robots = filter(state.robots, (robot: RobotListItem) => !robot.isForShipping);
     }
     
     return robots;

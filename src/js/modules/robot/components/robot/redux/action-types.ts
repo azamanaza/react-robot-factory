@@ -14,3 +14,4 @@ export const RECYCLE_ROBOTS_SUCCESS = "robots.RECYCLE.SUCCESS";
 export const RECYCLE_ROBOTS_ERROR = "robots.RECYCLE.ERROR";
 
 export const ADD_ROBOT_SHIPMENT = "robot.SHIPMENT.ADD";
+export const REMOVE_ROBOT_SHIPMENT = "robot.SHIPMENT.REMOVE";

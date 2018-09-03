@@ -1,10 +1,11 @@
 import * as _ from "lodash";
 import * as React from "react";
-import Robot from "./../../robot.type";
+import { EXTINGUISH_ROBOTS, RECYCLE_ROBOTS, ADD_ROBOT_SHIPMENT, REMOVE_ROBOT_SHIPMENT } from "./redux/action-types";
 import { shouldExtinguish, shouldRecycle, isQaPassed } from "./../../helpers/robot-stage.helper";
+import RobotListItem from "../robot-list/types";
 
 export interface StateProp { 
-    robot: Robot
+    robot: RobotListItem
 }
 
 export interface DispatchProp {
@@ -24,7 +25,7 @@ export default class RobotActions extends React.Component<RobotActionsProps, {}>
         return <div className="robot-actions">
             { this.renderExtinguishButton() }
             { this.renderRecycleRobotButton() }
-            { this.renderAddToReadyToShipButton() }
+            { this.renderAddRemoveReadyToShipButton() }
         </div>;
     }
 
@@ -32,7 +33,7 @@ export default class RobotActions extends React.Component<RobotActionsProps, {}>
         let button;
 
         if (shouldExtinguish(this.props.robot)) {
-            button = <button onClick={() => this.onActionButtonClick("extinguish")}> Extinguish </button>
+            button = <button onClick={() => this.onActionButtonClick(EXTINGUISH_ROBOTS)}> Extinguish </button>
         }
            
         return button;
@@ -42,19 +43,24 @@ export default class RobotActions extends React.Component<RobotActionsProps, {}>
         let button;
 
         if (shouldRecycle(this.props.robot)) {
-            button = <button onClick={() => this.onActionButtonClick("recycle")}> Recycle </button>
+            button = <button onClick={() => this.onActionButtonClick(RECYCLE_ROBOTS)}> Recycle </button>
         }
            
         return button;
     }
 
-    renderAddToReadyToShipButton() {
+    renderAddRemoveReadyToShipButton() {
         let button;
 
-        if (isQaPassed(this.props.robot)) {
-            button = <button onClick={() => this.onActionButtonClick("add-to-shipment")}> Add to Shipment </button>
+        if (isQaPassed(this.props.robot) && !this.props.robot.isForShipping) {
+            button = <button onClick={() => this.onActionButtonClick(ADD_ROBOT_SHIPMENT)}> Add to Shipment </button>
         }
-           
+          
+        if (isQaPassed(this.props.robot) && this.props.robot.isForShipping) {
+            button = <button onClick={() => this.onActionButtonClick(REMOVE_ROBOT_SHIPMENT)}> Remove from Shipment </button>
+        }
+
         return button;
     }
+
 }

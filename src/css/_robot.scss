@@ -18,6 +18,11 @@
     }
 }
 
+.robot-lists {
+    & > .col {
+        width: 45%;
+    }
+}
 ul.robot-actions,
 ul.robot-configurations,
 ul.robot-statuses {
