@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as _ from "lodash";
 import Robot from "./../../robot.type";
-import RbRobotComponent from "./../robot.component";
+import RbRobotComponent from "../robot/robot.component";
 
 export interface StateProps {
     robots: Robot[]

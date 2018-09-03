@@ -1,33 +1,25 @@
 import * as _ from "lodash";
 import * as React from "react";
-import Robot, { robotStatuses } from "./../robot.type";
-import RbRobotStatuses from "./robot-statuses.component";
-import RbRobotConfigurations from "./robot/robot-configurations.component";
+import Robot from "./../../robot.type";
+import { shouldExtinguish, shouldRecycle, isQaPassed } from "./../../helpers/robot-stage.helper";
 
 export interface StateProp { 
     robot: Robot
 }
 
 export interface DispatchProp {
-    onActionButtonClick: (action: string) => any
+    onActionButtonClick: (actionName: string, robotId: number) => any
 }
 
 type RobotActionsProps = StateProp & DispatchProp;
 
-// 'HelloProps' describes the shape of props.
-// State is never set so we use the '{}' type.
 export default class RobotActions extends React.Component<RobotActionsProps, {}> {
 
-    getRobotJson(): string {
-        return JSON.stringify(this.props.robot, null, 2);
-    }
-
     onActionButtonClick(actionName: string): void {
-        this.props.onActionButtonClick(actionName);
+        this.props.onActionButtonClick(actionName, this.props.robot.robotId);
     }
 
     render() {
-        let robot = this.props.robot;
         return <div className="robot-actions">
             { this.renderExtinguishButton() }
             { this.renderRecycleRobotButton() }
@@ -38,7 +30,7 @@ export default class RobotActions extends React.Component<RobotActionsProps, {}>
     renderExtinguishButton() {
         let button;
 
-        if (this.props.robot.isOnfire()) {
+        if (shouldExtinguish(this.props.robot)) {
             button = <button onClick={() => this.onActionButtonClick("extinguish")}> Extinguish </button>
         }
            
@@ -48,7 +40,7 @@ export default class RobotActions extends React.Component<RobotActionsProps, {}>
     renderRecycleRobotButton() {
         let button;
 
-        if (this.props.robot.isOnfire()) {
+        if (shouldRecycle(this.props.robot)) {
             button = <button onClick={() => this.onActionButtonClick("recycle")}> Recycle </button>
         }
            
@@ -58,7 +50,7 @@ export default class RobotActions extends React.Component<RobotActionsProps, {}>
     renderAddToReadyToShipButton() {
         let button;
 
-        if (this.props.robot.isOnfire()) {
+        if (isQaPassed(this.props.robot)) {
             button = <button onClick={() => this.onActionButtonClick("add-to-shipment")}> Add to Shipment </button>
         }
            

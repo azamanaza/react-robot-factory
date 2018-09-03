@@ -11,7 +11,6 @@ import * as robotStatusHelper from "../../helpers/robot-stage.helper";
 import { getRobotsThunk } from "./redux/actions";
 
 const filterList = (state: any): Robot[] => {
-    console.log(state);
     let robots: Robot[];
     switch(state.currentFilter) {
         case robotFilters.FACTORY_SECOND:

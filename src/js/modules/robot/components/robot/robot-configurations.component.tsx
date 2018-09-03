@@ -1,6 +1,6 @@
 import { isBoolean, join, kebabCase, keys, map } from "lodash";
 import * as React from "react";
-import { RobotConfig } from "./../robot.type";
+import { RobotConfig } from "../../robot.type";
 
 export interface RbRobotConfigurationsProp { 
     configuration: RobotConfig

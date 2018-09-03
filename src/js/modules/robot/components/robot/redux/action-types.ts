@@ -1,8 +1,3 @@
-
-export const FILTER_ROBOT_LIST = "robots.FILTER_LIST";
-export const ADD_TO_SHIPPING_LIST = "robots.ADD_TO_SHIPPING_LIST";
-export const REMOVE_FROM_SHIPPING_LIST = "robots.REMOVE_FROM_SHIPPING_LIST";
-
 // Thunk types
 export const EXTINGUISH_ROBOTS = "robots.EXTINGUISH";
 export const EXTINGUISH_ROBOTS_SUCCESS = "robots.EXTINGUISH.SUCCESS";
