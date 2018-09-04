@@ -2,9 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import { Provider } from "react-redux";
-import { store }  from "./modules/store";
+import { store }  from "./app/modules/store";
 
-import { App } from "./modules/app.component";
+import { App } from "./app/modules/app.component";
 
 
 
