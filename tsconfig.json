@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "./dist/",
+        "removeComments": true,
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
@@ -8,6 +9,6 @@
         "jsx": "react"
     },
     "include": [
-        "./src/**/*"
+        "./src/**/*", "webpack/common/externals.js"
     ]
 }

@@ -1,6 +1,4 @@
 const path = require("path");
-
-const externals = require("./common/externals");
 const moduleRules = require("./common/rules");
 const plugins = require("./common/plugins");
 
@@ -28,7 +26,10 @@ const commonConfig = {
 
     plugins: plugins,
 
-    externals: externals
+    externals: {
+        // Use external version of React
+        "react": "React"
+    }
     
 }
 

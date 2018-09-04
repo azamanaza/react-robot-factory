@@ -17,8 +17,7 @@ export const shouldRecycle = (robot: Robot): boolean => {
 
 export const isFactorySecond = (robot: Robot): boolean => {
     return !shouldExtinguish(robot) && !shouldRecycle(robot)
-        && robot.statuses.length > 0
-        && intersection(robot.statuses, [robotStatuses.LOOSE_SCREWS, robotStatuses.PAINT_SCRATCHED, robotStatuses.RUSTY]).length === 0;
+        && intersection(robot.statuses, [robotStatuses.LOOSE_SCREWS, robotStatuses.PAINT_SCRATCHED, robotStatuses.RUSTY]).length > 0;
 }
 
 export const isQaPassed = (robot: Robot): boolean => {
