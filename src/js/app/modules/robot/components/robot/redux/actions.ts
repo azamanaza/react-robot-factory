@@ -14,7 +14,7 @@ const robotService = new RobotService();
 export const extinguishRobotThunk = (robotId: number) => (dispatch: Dispatch<any>) => {
     dispatch(appLoading(true));
 
-    robotService.extinguishRobot(robotId)
+    return robotService.extinguishRobot(robotId)
             .then((robotId: number) => {
                 // already faked as Robot[], will map again to keep ts happy.
                 dispatch(robotExtinguishSuccess(robotId));
@@ -35,10 +35,10 @@ export const robotExtinguishSuccess: ActionCreator<AnyAction> = (robotId: number
     }
 }
 
-export const recycleRobotThunk = (robotId: number) => (dispatch: Dispatch<any>) => {
+export const recycleRobotThunk = (robotId: number) => (dispatch: Dispatch<any>): Promise<any> => {
     dispatch(appLoading(true));
 
-    robotService.recycleRobots([robotId])
+    return robotService.recycleRobots([robotId])
             .then((robotIds: number[]) => {
                 // already faked as Robot[], will map again to keep ts happy.
                 dispatch(recycleRobotsSuccess(robotIds));
