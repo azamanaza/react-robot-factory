@@ -5,7 +5,8 @@ const plugins = require("./common/plugins");
 const commonConfig = {
 
     entry: {
-        main: ["./src/js/index.tsx", "./src/css/styles.scss"]
+        main: ["./src/js/index.tsx", "./src/css/styles.scss"],
+        vendor: ["react", "react-dom"]
     },
 
     output: {
@@ -26,9 +27,17 @@ const commonConfig = {
 
     plugins: plugins,
 
-    externals: {
-        // Use external version of React
-        "react": "React"
+    optimization: {
+    splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    chunks: 'initial',
+                    name: 'vendor',
+                    test: 'vendor',
+                    enforce: true
+                },
+            }
+        }
     }
     
 }

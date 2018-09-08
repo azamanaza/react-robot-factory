@@ -17,12 +17,18 @@ npm i
 npm run build
 ```
 
-4. Open index.html file in public folder on your favorite browser
+4. Build the server
 ```
-./public/index.html
+npm run build:server
 ```
 
-TOO:
+4. Run theapp
+```
+npm run start:server
+```
+From here you should be able to open the app at http://localhost:3000 on your browser.
+
+TODO:
 - Add start command for easier app launch/demo
 - Bundle vendor files
 - Add tests
