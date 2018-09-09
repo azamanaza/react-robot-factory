@@ -1,15 +1,15 @@
 import { ActionCreator, AnyAction, Dispatch } from "redux";
 import robotService from "./../../../services/robot.service";
 import { 
+    ROBOT_LOADING,
     EXTINGUISH_ROBOTS_SUCCESS,
     RECYCLE_ROBOTS_SUCCESS,
     ADD_ROBOT_SHIPMENT,
     REMOVE_ROBOT_SHIPMENT
 } from "./action-types";
-import { appLoading } from "./../../../redux/action";
 
 export const extinguishRobotThunk = (robotId: number) => (dispatch: Dispatch<any>): Promise<void> => {
-    dispatch(appLoading(true));
+    dispatch(robotLoading(true));
 
     return robotService.extinguishRobot(robotId)
             .then((robotId: number) => {
@@ -19,7 +19,7 @@ export const extinguishRobotThunk = (robotId: number) => (dispatch: Dispatch<any
             .catch(error => {
                 // handle error
             }).finally(() => {
-                dispatch(appLoading(false));
+                dispatch(robotLoading(false));
             });
 }
 
@@ -33,7 +33,7 @@ export const robotExtinguishSuccess: ActionCreator<AnyAction> = (robotId: number
 }
 
 export const recycleRobotThunk = (robotId: number) => (dispatch: Dispatch<any>) => {
-    dispatch(appLoading(true));
+    dispatch(robotLoading(true));
 
     return robotService.recycleRobots([robotId])
             .then((robotIds: number[]) => {
@@ -43,7 +43,7 @@ export const recycleRobotThunk = (robotId: number) => (dispatch: Dispatch<any>) 
             .catch(error => {
                 // handle error
             }).finally(() => {
-                dispatch(appLoading(false));
+                dispatch(robotLoading(false));
             });
 }
 
@@ -73,3 +73,10 @@ export const removeRobotFromShipment: ActionCreator<AnyAction> = (robotId: numbe
         }
     }
 }
+
+export const robotLoading: ActionCreator<AnyAction> = (state: boolean) => ({
+    type: ROBOT_LOADING,
+    payload: {
+        state: state
+    }
+})

@@ -9,15 +9,15 @@ export default class RobotController {
     }
 
     public extinguishRobot(req: Request, res: Response) {
-        res.json(createTestRobots());
+        res.json(parseInt(req.params.id));
     }
 
     public recycleRobots(req: Request, res: Response) {
-        res.json(createTestRobots());
+        res.json(req.param("recycleRobots"));
     }
 
-    public  createShipment(req: Request, res: Response) {
-        res.json(createTestRobots());
+    public createShipment(req: Request, res: Response) {
+        res.json(req.params.robotIds);
     }
     
 }

@@ -27,7 +27,7 @@ export class RobotService {
 
     extinguishRobot(robotId: number): Promise<number> {
         return new Promise((resolve, reject) => {
-            this.connection.get("/robots/" + robotId + "/extinguish.json")
+            this.connection.post("/robots/" + robotId + "/extinguish.json")
             .then((response: any) => {
                 return resolve(response.data);
             }).catch((response: any) => {
@@ -38,13 +38,27 @@ export class RobotService {
 
     recycleRobots(robotIds: number[]): Promise<number[]> {
         return new Promise((resolve, reject) => {
-            setTimeout(resolve, random(.5,1)*1000, robotIds);
+            this.connection.post("/robots/recycle.json", {
+                recycleRobots: robotIds
+            })
+            .then((response: any) => {
+                return resolve(response.data);
+            }).catch((response: any) => {
+                return reject(response.status);
+            });
         });
     }
 
     shipRobots(robotIds: number[]): Promise<number[]> {
         return new Promise((resolve, reject) => {
-            setTimeout(resolve, random(.5,1)*1000, robotIds);
+            this.connection.put("/robots/shipment/create", {
+                robotIds: robotIds
+            })
+            .then((response: any) => {
+                return resolve(response.data);
+            }).catch((response: any) => {
+                return reject(response.status);
+            });
         });
     }
     

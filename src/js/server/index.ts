@@ -40,7 +40,6 @@ class App {
             next();
         });
 
-        this.getApp().use(express.static(path.join(this.configOptions.rootPath, "/coverage/lcov-report")));
         this.getApp().get("/test-coverage", (req: express.Request, res: express.Response) => {            
             res.status(200).sendFile(path.join(this.configOptions.rootPath, "/coverage/lcov-report/index.html"));
         });
