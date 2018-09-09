@@ -106,4 +106,40 @@ describe("Robot Component Actions", () => {
 
         expect(robotActions.recycleRobotsSuccess([robotId])).toEqual(expectedAction)
     });
+
+    it("Test addRobotToShipment generated action.", () => {
+        let robotId = 1;
+        let expectedAction = {
+            type: types.ADD_ROBOT_SHIPMENT,
+            payload: {
+                robotId: robotId
+            }
+        };
+
+        expect(robotActions.addRobotToShipment(robotId)).toEqual(expectedAction)
+    });
+
+    it("Test removeRobotFromShipment generated action.", () => {
+        let robotId = 1;
+        let expectedAction = {
+            type: types.REMOVE_ROBOT_SHIPMENT,
+            payload: {
+                robotId: robotId
+            }
+        };
+
+        expect(robotActions.removeRobotFromShipment(robotId)).toEqual(expectedAction)
+    });
+
+    it("Test robotLoading generated action.", () => {
+        let state = true;
+        let expectedAction = {
+            type: types.ROBOT_LOADING,
+            payload: {
+                state: state
+            }
+        };
+
+        expect(robotActions.robotLoading(state)).toEqual(expectedAction)
+    });
 });
