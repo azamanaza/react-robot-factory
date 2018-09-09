@@ -2,25 +2,25 @@ import { map } from "lodash";
 import { AnyAction, ActionCreator, Dispatch } from "redux";
 
 import Robot from "./../../../robot.type";
-import RobotService from "./../../../services/robot.service";
-import { GET_ROBOTS_SUCCESS, GET_ROBOTS_ERROR, SHIP_ROBOTS, SHIP_ROBOTS_SUCCESS } from "./action-types";
+import robotService from "./../../../services/robot.service";
+import { GET_ROBOTS_SUCCESS, GET_ROBOTS_ERROR, SHIP_ROBOTS_SUCCESS } from "./action-types";
 import { appLoading } from "./../../../redux/action";
 import RobotListItem from "./../types";
-
-
-const robotService = new RobotService();
 
 export const getRobotsThunk = () => (dispatch: Dispatch<any>) => {
     dispatch(appLoading(true));
 
-    robotService.getRobots()
-            .then(data => {
-                dispatch(robotLoadSuccess(map(data, (robot: Robot) => new RobotListItem(robot))));
-            }).catch(error => {
-                // handle error
-            }).finally(() => {
-                dispatch(appLoading(false));
-            });
+    let responsePromise = robotService.getRobots();
+    responsePromise.then(data => {
+        dispatch(robotLoadSuccess(map(data, (robot: any) => new RobotListItem(robot))));
+    }).catch(error => {
+        // handle error
+        dispatch(robotLoadError("An error has occurred."));
+    }).finally(() => {
+        dispatch(appLoading(false));
+    });
+
+    return responsePromise;
 }
 
 export const robotLoadSuccess: ActionCreator<AnyAction> = (robots: Robot[]) => {

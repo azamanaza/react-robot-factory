@@ -1,6 +1,6 @@
 import { ActionCreator, AnyAction, Dispatch } from "redux";
 
-import RobotService from "./../../../services/robot.service";
+import robotService from "./../../../services/robot.service";
 import { 
     EXTINGUISH_ROBOTS_SUCCESS,
     RECYCLE_ROBOTS_SUCCESS,
@@ -8,8 +8,6 @@ import {
     REMOVE_ROBOT_SHIPMENT
 } from "./action-types";
 import { appLoading } from "./../../../redux/action";
-
-const robotService = new RobotService();
 
 export const extinguishRobotThunk = (robotId: number) => (dispatch: Dispatch<any>) => {
     dispatch(appLoading(true));

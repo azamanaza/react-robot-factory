@@ -18,7 +18,8 @@
   },
   "scripts": {
     "test": "jest --coverage --colors",
-    "build": "rimraf dist && webpack --progress --config webpack.config.js",
+    "build": "npm run build:app && npm run build:server",
+    "build:app": "rimraf dist && webpack --progress --config webpack.config.js",
     "build:server": "tsc",
     "start:server": "nodemon ./dist/server/index.js"
   },
@@ -62,6 +63,7 @@
     "@types/morgan": "^1.7.35",
     "@types/redux-mock-store": "^1.0.0",
     "awesome-typescript-loader": "^5.2.0",
+    "axios": "^0.18.0",
     "css-loader": "^1.0.0",
     "express-list-endpoints": "^3.0.1",
     "file-loader": "^1.1.11",
