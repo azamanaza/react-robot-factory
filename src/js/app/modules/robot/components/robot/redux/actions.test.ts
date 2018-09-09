@@ -56,7 +56,7 @@ describe("Robot Component Actions", () => {
             }
         };
 
-        expect(robotActions.robotExtinguishSuccess(robotId)).toEqual(expectedAction)
+        expect(robotActions.robotExtinguishSuccess(robotId)).toEqual(expectedAction);
     });
 
     describe("recycleRobotThunk async action", () => {

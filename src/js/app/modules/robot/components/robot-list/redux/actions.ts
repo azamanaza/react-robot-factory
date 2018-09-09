@@ -32,11 +32,11 @@ export const robotLoadSuccess: ActionCreator<AnyAction> = (robots: Robot[]) => {
     }
 }
 
-export const robotLoadError: ActionCreator<AnyAction> = (errorMessage: string) => {
+export const robotLoadError: ActionCreator<AnyAction> = (errorCode: string | number) => {
     return {
         type: GET_ROBOTS_ERROR,
         payload: {
-            errorMessage: errorMessage
+            errorCode: errorCode
         }
     }
 }
@@ -44,7 +44,7 @@ export const robotLoadError: ActionCreator<AnyAction> = (errorMessage: string) =
 export const shipRobotsThunk = (robotIds: number[]) => (dispatch: Dispatch<any>) => {
     dispatch(appLoading(true));
 
-    robotService.shipRobots(robotIds)
+    return robotService.shipRobots(robotIds)
             .then(data => {
                 dispatch(robotShipSuccess(data));
             }).catch(error => {
