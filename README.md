@@ -49,5 +49,11 @@ npm test
 
 ### Client App ( Robot Factory )
 <p>
-    The client app folder structure is designed modular, to provide better scalability. Modules contains it's own components, and redux related files, since actions and how they are consumed/bound to components.
+    The client app folder structure is designed modular, to provide better scalability. Modules contains it's own components, and redux related files, since actions and how they are consumed/bound to components.  
+</p>
+<p>
+A connection object is abstracted for a situation when we want to switch libraries (native fetch or whatever). This connection is used by api related services. These services can then map responses to designated formats. For future implementations, a cache layer would idealy implemented here.
+</p>
+<p>
+The thunks then dispatch according to whatever responses the api services have. Actions dispatched will then be reduced to render error messages or silently and just show an empty app.
 </p>
