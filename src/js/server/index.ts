@@ -1,46 +1,54 @@
 import * as http from "http";
-import * as debug from "debug";
+import * as path from "path";
+
+var expressListRoutes = require("express-list-routes");
+
+import config, { AppConfig } from "./config";
+
 import * as express from "express";
-import App from "./controllers/index.controller";
+import * as bodyParser from "body-parser";
+import router from "./routes";
+console.log(expressListRoutes(router));
+class App {
 
-debug('ts-express:server');
+    private app: express.Application;
+    private configOptions: AppConfig;
+    private router : express.Router;
 
-const path = require("path");
-const port = normalizePort(process.env.PORT || 3000);
-App.set('port', port);
-console.log(path.join(__dirname, "../../dist"));
-App.use(express.static(path.join(__dirname, "../../dist")));
-const server = http.createServer(App);
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+    constructor(config: any, router: express.Router) {
+        this.configOptions = config;
+        this.router = router;
+        this.app = express();
+        this.config();         
+    }
 
-function normalizePort(val: number|string): number|string|boolean {
-  let port: number = (typeof val === 'string') ? parseInt(val, 10) : val;
-  if (isNaN(port)) return val;
-  else if (port >= 0) return port;
-  else return false;
+    getApp() {
+        return this.app;
+    }
+
+    private config(): void{
+        this.getApp().use(bodyParser.json());
+        this.getApp().use(bodyParser.urlencoded({ extended: false }));
+        // serving static files 
+        // console.log(this.configOptions.distPath);
+
+        this.getApp().use(express.static(this.configOptions.distPath));
+
+        router.use((req: express.Request, res: express.Response, next: express.NextFunction): void => {
+            console.log(req.baseUrl);
+            console.log(req.params);
+            next();
+        });
+
+        this.getApp().get("/", (req: express.Request, res: express.Response) => {            
+            res.status(200).sendFile(path.join(this.configOptions.publicPath, "/index.html"));
+        });
+
+        this.getApp().use(this.router);
+
+    }
 }
 
-function onError(error: NodeJS.ErrnoException): void {
-  if (error.syscall !== 'listen') throw error;
-  let bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
-  switch(error.code) {
-    case 'EACCES':
-      console.error(`${bind} requires elevated privileges`);
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(`${bind} is already in use`);
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-function onListening(): void {
-  let addr = server.address();
-  let bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
-  debug(`Listening on ${bind}`);
-}
+http.createServer((new App(config, router)).getApp()).listen(config.PORT, () => {
+    console.log('Express server listening on port ' + config.PORT);
+});

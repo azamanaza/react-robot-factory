@@ -3,7 +3,7 @@ import * as express from "express";
 import * as logger from "morgan";
 import * as bodyParser from 'body-parser';
 
-class RobotController {
+class IndexController {
 
     public express: express.Application;
 
@@ -30,4 +30,4 @@ class RobotController {
 
 }
 
-export default new RobotController(express()).express;
+export default new IndexController(express()).express;
