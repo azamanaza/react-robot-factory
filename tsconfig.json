@@ -10,9 +10,9 @@
         "jsx": "react"
     },
     "include": [
-        "./src/**/*", "webpack/common/externals.js", "jest/preprocessor.js", "lib/**/*.ts"
+        "./src/**/*", "webpack/common/externals.js", "jest/preprocessor.js"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules", "./src/**/*test.ts"
     ]
 }

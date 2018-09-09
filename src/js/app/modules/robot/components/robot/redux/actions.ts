@@ -1,5 +1,4 @@
 import { ActionCreator, AnyAction, Dispatch } from "redux";
-
 import robotService from "./../../../services/robot.service";
 import { 
     EXTINGUISH_ROBOTS_SUCCESS,
@@ -9,7 +8,7 @@ import {
 } from "./action-types";
 import { appLoading } from "./../../../redux/action";
 
-export const extinguishRobotThunk = (robotId: number) => (dispatch: Dispatch<any>) => {
+export const extinguishRobotThunk = (robotId: number) => (dispatch: Dispatch<any>): Promise<void> => {
     dispatch(appLoading(true));
 
     return robotService.extinguishRobot(robotId)
@@ -33,7 +32,7 @@ export const robotExtinguishSuccess: ActionCreator<AnyAction> = (robotId: number
     }
 }
 
-export const recycleRobotThunk = (robotId: number) => (dispatch: Dispatch<any>): Promise<any> => {
+export const recycleRobotThunk = (robotId: number) => (dispatch: Dispatch<any>) => {
     dispatch(appLoading(true));
 
     return robotService.recycleRobots([robotId])
